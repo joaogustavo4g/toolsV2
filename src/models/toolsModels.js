@@ -1,4 +1,5 @@
 const { Schema, model } = require('mongoose')
+const mongoosePaginate = require('mongoose-paginate-v2');
 
 const Tools = new Schema({
     title: {
@@ -21,5 +22,7 @@ const Tools = new Schema({
 },{
     timestamps: true
 })
+
+Tools.plugin(mongoosePaginate);
 
 module.exports = model('tools', Tools);
