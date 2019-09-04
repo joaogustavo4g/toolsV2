@@ -4,10 +4,10 @@ const cors = require("cors")
 const app = express()
 const Router = require('./src/routes')
 const database = require('mongoose')
+app.use(cors())
 
 app.use(express.json())
 app.use(Router)
-app.use(cors())
 
 //LINKDB = Link para conexão do banco de dados, deve ser colocado no arquivo ".env"
 database.connect(process.env.LINKDB, { useNewUrlParser: true })
