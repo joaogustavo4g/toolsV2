@@ -7,11 +7,11 @@ module.exports = {
 
         //Verifica se exite tag na rota
         if (tag) {
-            let tool = awaittoolsDataBase.paginate({ tags: tag }, { page, limit: 5 })
+            let tool = await toolsDataBase.paginate({ tags: tag}, { page, limit: 5 })
             return res.json({ tool })
         }
 
-        let tool = awaittoolsDataBase.paginate({}, { page, limit: 5 })
+        let tool = await toolsDataBase.paginate({}, { page, limit: 5 })
         return res.json({ tool })
     },
 
