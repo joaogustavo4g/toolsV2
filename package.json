@@ -5,10 +5,18 @@
   "repository": "https://github.com/joaosl33p/tolls.git",
   "author": "João Gustavo <joaosl33p@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "start": "node server.js"
+  },
   "dependencies": {
     "cors": "^2.8.5",
+    "dotenv": "^8.1.0",
     "express": "^4.17.1",
     "mongoose": "^5.6.12",
+    "require-dir": "^1.2.0"
+  },
+  "devDependencies": {
     "nodemon": "^1.19.2"
   }
 }
