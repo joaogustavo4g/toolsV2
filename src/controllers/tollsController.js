@@ -3,15 +3,15 @@ const toolsDataBase = require('../models/toolsModels');
 module.exports = {
 
     async listar(req, res) {
-        const tag = req.query.tag;
+        const { tag, page = 1 } = req.query;
 
         //Verifica se exite tag na rota
         if (tag) {
-            let tool = await toolsDataBase.find({ tags: tag })
+            let tool = awaittoolsDataBase.paginate({ tags: tag }, { page, limit: 5 })
             return res.json({ tool })
         }
 
-        let tool = await toolsDataBase.find()
+        let tool = awaittoolsDataBase.paginate({}, { page, limit: 5 })
         return res.json({ tool })
     },
 
@@ -34,7 +34,7 @@ module.exports = {
 
         try {
             await toolsDataBase.findByIdAndDelete({ _id: id })
-            return res.status(203).json({toolsDataBase});
+            return res.status(203).json({ toolsDataBase });
 
         } catch (error) {
             return res.status(500).json({ error });
