@@ -3,9 +3,9 @@
 Tools é uma API para gerencia registros, podendo ser todalmente altera para qualquer ocasião que precise
 
 ## Pulos rápidos
-> [Inciaindo o Projeot](#start)<br>
+> [Inciaindo o Projeto](#start)<br>
+> [Como Usar](#usar)<br>
 > [Como instalar manualmente](#dep)<br>
-> [Como Usar](#user)<br>
 
 <a name="start"></a>
 ## Iniciando o projeto:
