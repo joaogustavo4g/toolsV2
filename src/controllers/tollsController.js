@@ -7,12 +7,12 @@ module.exports = {
 
         //Verifica se exite tag na rota
         if (tag) {
-            let tool = await toolsDataBase.paginate({ tags: tag}, { page, limit: 5 })
-            return res.json( tool )
+            let tool = await toolsDataBase.paginate({ tags: tag }, { page, limit: 5 })
+            return res.json(tool)
         }
 
         let tool = await toolsDataBase.paginate({}, { page, limit: 5 })
-        return res.json( tool )
+        return res.json(tool)
     },
 
     async registrar(req, res) {
@@ -26,7 +26,7 @@ module.exports = {
 
         const tool = await toolsDataBase.create(req.body)
 
-        return res.status(201).json({ tool })
+        return res.status(201).json({ Registrado: [tool.title, tools.description] })
     },
 
     async deletar(req, res) {
