@@ -1,4 +1,4 @@
-# Tools &middot; [![GitHub license](https://img.shields.io/badge/license-GPL%20v3.0-green)](https://github.com/joaosl33p/tolls/blob/master/LICENSE) [![yarn](https://img.shields.io/badge/Yarn-v1.17.3-red)](https://yarnpkg.com/pt-BR/)
+# Tools &middot; [![GitHub license](https://img.shields.io/badge/license-GPL%20v3.0-blue)](https://github.com/joaosl33p/tolls/blob/master/LICENSE) [![yarn](https://img.shields.io/badge/yarn-v1.17.3-red)](https://yarnpkg.com/pt-BR/) [![node](https://img.shields.io/badge/nodeJs-v10.16.3-green)](https://nodejs.org/pt-br/) [![mongoose](https://img.shields.io/badge/mongoose-v5.6.13-yellow)](https://yarnpkg.com/pt-BR/)
 
 Tools é uma API para gerencia registros, podendo ser todalmente altera para qualquer ocasião que precise
 
@@ -33,9 +33,10 @@ git clone https://github.com/joaosl33p/tolls
 
 Tools é uma API Rest e trabalha com requisição, abaixo ira qual requisição fazer para cada funcionalidade da ferramenta e como ela funciona 
 
+
 > link usados do teste é o site do localhost padrão da api quando baixada, caso queira aterar acesse, basta acessar o arquivo <code>server.js</code> e altera a linha <code>15</code>
 
-
+> Todas as respostas são retornas em Json paginados para melhor melhor desempenho, saiba mais sobre paginação [aqui](https://www.npmjs.com/package/mongoose-paginate-v2)
 
 ### Registrando novos dados (POST)
 - Requisição
