@@ -1,35 +1,37 @@
 const userDB = require('../models/userModels')
 
-
-const varredura = async (user, mail) => {
-    let userExist = await userDB.find({ user })
-    let mailExist = await userDB.find({ mail })
-
-    if (userExist || mailExist) {
-        return true;
-    } else {
-        return false;
-    }
-}
-
-
 module.exports = {
 
     async cadastrar(req, res) {
         let { user, mail } = req.body;
+        let userExist = await userDB.findOne({ user })
+        let mailExist = await userDB.findOne({ mail })
 
-        if (varredura(user, mail)) {
-            return res.status(203).json({ erro: "usuario já cadastrado" })
+
+        if (userExist) {
+            return res.status(203).json({ userExist })
+        }
+        if (mailExist) {
+            return res.status(203).json({ userExist })
         }
 
         let newUser = await userDB.create(req.body)
         newUser.password = "";
 
-        return res.status(201).json({ newUser })
+        return res.status(201).json({ user: newUser })
     },
 
     async login(req, res) {
-        console.log("criar login")
-        return res.status(201).json({ user: "criado" })
+        let { user, password } = req.body;
+        let userExist = await userDB.findOne({ user }).select("+password");
+
+        if (!userExist) {
+            return res.status(203).json({ erro: "user not found" })
+        }
+        if (userExist.password != password) {
+            return res.status(203).json({  erro: "password invalid" })
+        }
+
+        return res.status(201).json({ user: userExist })
     }
 }
