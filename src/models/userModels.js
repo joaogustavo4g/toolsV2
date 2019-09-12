@@ -13,16 +13,14 @@ const User = new Schema({
     },
     isAdmin: {
         type: Boolean,
-        required: true,
         default: false
     },
     password: {
         type: String,
         required: true,
-        select: false,
-        unique: true
+        select: false
     }
-},{
+}, {
     timestamps: true
 })
 
