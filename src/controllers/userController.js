@@ -12,7 +12,7 @@ module.exports = {
             return res.status(203).json({ userExist })
         }
         if (mailExist) {
-            return res.status(203).json({ userExist })
+            return res.status(203).json({ mailExist })
         }
 
         let newUser = await userDB.create(req.body)
