@@ -7,7 +7,6 @@ module.exports = {
         let userExist = await userDB.findOne({ user })
         let mailExist = await userDB.findOne({ mail })
 
-
         if (userExist) {
             return res.status(203).json({ userExist })
         }
