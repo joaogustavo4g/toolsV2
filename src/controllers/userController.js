@@ -1,4 +1,13 @@
+require('dotenv/config');
 const userDB = require('../models/userModels')
+const jwt = require("jsonwebtoken");
+
+// gerando token
+function genToken(params = {}) {
+    return jwt.sign(params, process.env.AUTH, {
+        expiresIn: 86400,
+    });
+}
 
 module.exports = {
 
@@ -8,16 +17,16 @@ module.exports = {
         let mailExist = await userDB.findOne({ mail })
 
         if (userExist) {
-            return res.status(203).json({ userExist })
+            return res.status(203).json({ erro: "user already exist" })
         }
         if (mailExist) {
-            return res.status(203).json({ mailExist })
+            return res.status(203).json({ erro: "existing email" })
         }
 
         let newUser = await userDB.create(req.body)
         newUser.password = "";
 
-        return res.status(201).json({ user: newUser })
+        return res.status(201).json({ user: newUser, token: genToken({ id: user._id }) })
     },
 
     async login(req, res) {
@@ -25,12 +34,30 @@ module.exports = {
         let userExist = await userDB.findOne({ user }).select("+password");
 
         if (!userExist) {
-            return res.status(203).json({ erro: "user not found" })
+            return res.status(203).json({ msg: "User not found" })
         }
         if (userExist.password != password) {
-            return res.status(203).json({  erro: "password invalid" })
+            return res.status(203).json({ msg: "invalid password" })
         }
 
-        return res.status(201).json({ user: userExist })
+        return res.status(201).json({ user: userExist, token: genToken({ id: user._id }) })
+    },
+
+    // Parte administrativa
+    async upgrade(req, res) {
+        let { user } = req.body;
+        let newStatus = await userDB.findOne({ user });
+        newStatus.isAdmin = true;
+        newStatus.save();
+        return res.status(200).json({ newStatus });
+    },
+
+    async deletar(req, res) {
+        let { user } = req.body;
+        await userDB.findOneAndDelete({ user });
+        if (await userDB.findOne({ user })) {
+            return res.status(200).json({ msg: "error deleting" });
+        }
+        return res.status(200).json({ msg: "Successfully deleted" });
     }
 }
