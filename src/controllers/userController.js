@@ -45,7 +45,7 @@ module.exports = {
 
     // Parte administrativa
     async upgrade(req, res) {
-        let { user } = req.body;
+        let { user } = req.query;
         let newStatus = await userDB.findOne({ user });
         newStatus.isAdmin = true;
         newStatus.save();
@@ -53,9 +53,9 @@ module.exports = {
     },
 
     async deletar(req, res) {
-        let { user } = req.body;
-        await userDB.findOneAndDelete({ user });
-        if (await userDB.findOne({ user })) {
+        let { id } = req.query;
+        await userDB.findByIdAndDelete({ user });
+        if (await userDB.findById({ id })) {
             return res.status(200).json({ msg: "error deleting" });
         }
         return res.status(200).json({ msg: "Successfully deleted" });
