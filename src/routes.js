@@ -17,11 +17,15 @@ Router.get('/tools', toolsController.listar)
 
 // parte das rotas que necessita verificação
 Router.use(authMiddleware);
+
 //tolls
 Router.post('/tools', toolsController.registrar)
 Router.delete('/tools/:id', toolsController.deletar)
 
-//usuarios
+//user ADMIN
+Router.delete('/index', userController.deletar)
+Router.delete('/index', userController.upgrade)
+
 
 
 module.exports = Router;
