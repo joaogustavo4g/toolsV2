@@ -20,11 +20,13 @@ Router.use(authMiddleware);
 
 //tolls
 Router.post('/tools', toolsController.registrar)
+
+// tool somente admin
 Router.delete('/tools/:id', toolsController.deletar)
 
 //user ADMIN
 Router.delete('/index', userController.deletar)
-Router.delete('/index', userController.upgrade)
+Router.put('/index/up', userController.upgrade)
 
 
 
