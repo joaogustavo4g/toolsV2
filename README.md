@@ -38,6 +38,70 @@ Tools é uma API Rest e trabalha com requisição, abaixo ira qual requisição 
 
 > Todas as respostas são retornas em Json paginados para melhor melhor desempenho, saiba mais sobre paginação [aqui](https://www.npmjs.com/package/mongoose-paginate-v2)
 
+
+### Registrando novos Usuario (POST)
+> Senha sera criptografada após o envio
+
+- Requisição
+    > http://localhost:3003/register
+    ```json
+    {
+        "user": "user",
+        "mail": "user@server.com",
+        "password": "123",
+    }
+    ```
+- Resposta
+
+    ```json
+    code 201 - Created
+   {
+       "user": {
+    "isAdmin": false,
+    "_id": "5d7b0518baa8f84dae20bd1e",
+    "user": "user",
+    "mail": "user@server.com",
+    "createdAt": "2019-09-13T02:55:20.149Z",
+    "updatedAt": "2019-09-13T02:55:20.149Z",
+    "__v": 0
+  },
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1NjgzNDMzMjAsImV4cCI6MTU2ODQyOTcyMH0._a_FCiJAQsOBS2Z-NBd2sbcr1vATyzIos4lmUo-pWk8"
+   }
+    ```
+
+    > Por padrão todo usuario cadastrado não é admin, logo, isAdmin é false, pode ser modificado depois (por um outro admin)
+
+    > A senha nunca será retornada
+
+    > O token é necessario para fazer qualquer operação no resto da api
+
+### Login do usuario (POST)
+- Requisição
+    > http://localhost:3003/register
+    ```json
+    {
+        "user": "user",
+        "password": "123",
+    }
+        ```
+- Resposta
+
+    ```json
+    code 200
+   {
+    "user": {
+    "isAdmin": false,
+    "_id": "5d7b0518baa8f84dae20bd1e",
+    "user": "user",
+    "mail": "user@server.com",
+    "createdAt": "2019-09-13T02:55:20.149Z",
+    "updatedAt": "2019-09-13T02:55:20.149Z",
+    "__v": 0
+  },
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1NjgzNDMzMjAsImV4cCI6MTU2ODQyOTcyMH0._a_FCiJAQsOBS2Z-NBd2sbcr1vATyzIos4lmUo-pWk8"
+   }
+    ```
+
 ### Registrando novos dados (POST)
 - Requisição
     > http://localhost:3003/tools
@@ -147,6 +211,8 @@ Tools é uma API Rest e trabalha com requisição, abaixo ira qual requisição 
 ### Deletando os dados (DELETE)
 - Requisição
     > Para deletar basta fazer a requição passando o id da tools que quer deletar
+
+    > Somente usuarios administradores podem deletar
     
     > Exemplo: http://localhost:3003/tools/5d6f892392966f1160a0c382
 
@@ -154,6 +220,7 @@ Tools é uma API Rest e trabalha com requisição, abaixo ira qual requisição 
     ```json
      code 203 Non-Authoritative Information
     ```
+
 <a name="dep"></a>
 ## Instalando as dependecias manualmente
 ```
