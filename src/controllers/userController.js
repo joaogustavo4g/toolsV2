@@ -45,8 +45,9 @@ module.exports = {
 
     // Parte administrativa
     async upgrade(req, res) {
-        let { user } = req.query;
-        let newStatus = await userDB.findOne({ user });
+        let user = req.body.id;
+        console.log(user)
+        let newStatus = await userDB.findById({ id });
         newStatus.isAdmin = true;
         newStatus.save();
         return res.status(200).json({ newStatus });

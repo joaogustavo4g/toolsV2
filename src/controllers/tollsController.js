@@ -1,4 +1,5 @@
 const toolsDataBase = require('../models/toolsModels');
+const userDB = require('../models/userModels')
 
 module.exports = {
 
@@ -31,6 +32,12 @@ module.exports = {
 
     async deletar(req, res) {
         const id = req.params.id;
+        const { idUser } = req.body;
+        let user = await userDB.findById({ _id: idUser });
+
+        if (!user.isAdmin) {
+            return res.status(403).json({ msg: "somente admin pode fazer isso" })
+        }
 
         try {
             await toolsDataBase.findByIdAndDelete({ _id: id })
@@ -39,6 +46,5 @@ module.exports = {
         } catch (error) {
             return res.status(500).json({ error });
         }
-
     },
 }

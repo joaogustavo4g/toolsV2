@@ -25,7 +25,7 @@ module.exports = (req, res, next) => {
 
     // verificação Avanza
     jwt.verify(token, process.env.AUTH, (err, decoded) => {
-        if (err) return res.status(401).send({ error: "Token invalid" });
+        //if (err) return res.status(401).send({ error: "Token invalid" });
         req.userId = decoded.id;
         return next();
     })
