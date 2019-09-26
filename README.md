@@ -3,7 +3,7 @@
 Tools é uma API para gerencia registros, podendo ser todalmente altera para qualquer ocasião que precise
 
 ## Pulos rápidos
-> [Inciaindo o Projeto](#start)<br>
+> [Iniciaindo o Projeto](#start)<br>
 > [Como Usar](#usar)<br>
 > [Como instalar manualmente](#dep)<br>
 
@@ -16,10 +16,10 @@ Tools é uma API para gerencia registros, podendo ser todalmente altera para qua
 ```
 git clone https://github.com/joaosl33p/tolls
 ```
-- Depois basta dá um ``` yarn init  ``` e todas as dependencias serão instaladas, caso isso não occorra, [click aqui](#dep)
+- Depois basta dá um ``` yarn  ``` e todas as dependencias serão instaladas, caso isso não occorra, [click aqui](#dep)
     - caso não tenhe o yarn [clique aqui](https://yarnpkg.com/pt-BR/)
 
-- Tudo pronto, basta dá um ```yarn dev``` e o server ira roda em localhost:3003 
+- Tudo pronto, basta dá um ```yarn start``` e o server ira roda em localhost:3003 
 
 - Configurando o banco de dados
  > O banco de dados usado é o mongoDB e foi usado o atlas, caso queira continuar a usar o atlas basta seguir os passos abaixo para configural
@@ -114,13 +114,13 @@ Tools é uma API Rest e trabalha com requisição, abaixo ira qual requisição 
         "link": "https://github.com/typicode/hotel",
         "description": "Local app manager. Start apps within your browser, developer tool with local .localhost domain and https out of the box.",
         "tags": [
-        "node",
-        "organizing",
-        "webapps",
-        "domain",
-        "developer",
-        "https",
-        "proxy"
+            "node",
+            "organizing",
+            "webapps",
+            "domain",
+            "developer",
+            "https",
+            "proxy"
         ],
     }
     ```
