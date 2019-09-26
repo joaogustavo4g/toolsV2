@@ -1,0 +1,165 @@
+FORMAT: 1A
+
+HOST: https://toolsapi.herokuapp.com/
+
+# API VUTTR - BossaBox
+
+API para a aplicação VUTTR (Very Useful Tools to Remember). A aplicação é um simples repositório para gerenciar ferramentas com seus respectivos nomes, links, descrições e tags. 
+
+# Group API
+
+## Sobre [/]
+
+Toda as respostas, exeto a de "delete" irá retornar um json e sepre quando for necessario passar qualquer dado será no formato json
+
+# Group Routes
+
+## Tools [/tools]
+
+### Registrando tools [POST]
++ Request 
+    + Headers
+        Accept: application/json
+        Content-Type: application/json
+        auth: (Token)
+    + Attributes (Tools)
+
++ Response 201 (application/json)
+    + Attributes (CreatedTool)
+
+### Listar Tools [GET]
++ Response 200 (application/json)
+    + Attributes (array[Tools])
+
++ Response 404 (application/json)
+    + Attributes (Error)
+
+## Pesquisar Tool [/tools?tag={tool_tag}]
+
+### Tools [POST]
++ Parameters
+    + tool_tag: (Tag) (String, required) - alguma tag da tool
+
+## Excluir Tool [/tools/{id_tool}]
+
+### Tools [DELETE]
++ Request
+    + Headers
+            Content-Type: application/json
+            auth: (Token)
+    + Attributes (id) - Id do usuário
+
++ Parameters
+    + id_tool (int, required) - ID da mensagem
+
++ Response 203 (application/json)
+
+## Cadastrar[/cadastrar]
+
+### User [POST]
++ Request 
+    + Headers
+            Accept: application/json
+            Content-Type: application/json
+
+    + Attributes (User)
+
++ Response 201 (application/json)
+    + Attributes (CreatedUser)
+
+## Login [/Login]
+
+### User [POST]
++ Request 
+    + Headers
+        Accept: application/json
+        Content-Type: application/json
+    + Attributes (Login)
+
++ Response 200 (application/json)
+    + Attributes (LoginUser)
+
++ Response 400 (application/json)
+    + Attributes (Error)
+
+## Login [/index?{id_user}]
+
+### User [DELETE]
++ Request 
+    + Headers
+        auth: (token)
+
++ Response 203 (application/json)
+
++ Response 400 (application/json)
+    + Attributes (Error)
+
+# Data Structures
+
+## Tools (object)
+    + title (String) - Titulo da ferramenta
+    + description (String) - Descrição da ferramenta
+    + link (String) - URL do repositório ou site da ferramenta
+    + tags (Array) - Uma Array com as tags referentes a ferramenta
+
+## CreatedTool (object)
+    + code: 201 (number) - Status code
+    + id (hash) - Id gerado
+    + title (String) - Titulo da ferramenta
+    + description (String) - Descrição da ferramenta
+    + link (String) - URL do repositório ou site da ferramenta
+    + tags (Array) - Uma Array com as tags referentes a ferramenta
+    + createdAt (String) - Data de registro
+    + updatedAt (String) - Data da última alteração
+
+## User (object)
+    + user (string) - usuário usado para logar
+    + mail (string) - email do usuario
+    + password (string) - senha para acesso posterior
+
+## CreatedUser (object)
+    + code: 201 (number) - Status code
+    + id (number) - Id gerado do usuário
+    + user (string) - usuário 
+    + mail (string) - email do usuario
+    + isAdmin (boolean) - Saber se é um adm ou não
+    + createdAt (String) - Data de registro
+    + updatedAt (String) - Data da última alteração
+    + token (Token) - Token de acesso do usuário conectado
+
+
+## Login (User)
+    - mail (String) - Não usado no login
+
+## LoginUser (CreatedUser)
+    - code: 201 (number) - Status code
+    + code: 200 (number) - Status code
+    + token (token) - Token de acesso do usuário conectado
+    
+## Docs (Tools)
+    + code: 200 (number) - Status code
+    + totalDocs (int) - Numero total de Tools cadastradas
+    + limit (int) - Limite de exibição por página
+    + page (int) - Número da página atual
+    + totalPages (int) - Número total de páginas
+
+## Token (object)
+    + token (hash) - Token gerado toda vez que acessar como usuario, valido por 24h
+
+## id (object)
+    + id (String) - Gerado pelo próprio banco de dados, tanto para as tools quanto para os users
+
+## Query (object)
+    + String - Dados passados pela URL
+
+## Tag (Query)
+    + tag (String) - Palavra para pesquisar alguma tool
+
+## Page (Query)
+    + page (int) - Numero referente a página
+
+## Erro (object)
+    + code: 400 (number) - Status code
+    + message (String) - Mensagem do status
+    + description (String) - Descrição do status
+
