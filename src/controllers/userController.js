@@ -1,7 +1,7 @@
 require('dotenv/config');
 const userDB = require('../models/userModels')
 const jwt = require("jsonwebtoken");
-
+const md5 = require('')
 // gerando token
 function genToken(params = {}) {
     return jwt.sign(params, process.env.AUTH, {
